@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ConnectionHandlerSampleApp</string>
+
+    <string name="address_hint">Enter postal address</string>
+    <string name="address_def">Open-RnD Sp. z o.o., ul. Biegańskiego 15, 91-473 Łódź</string>
+    <string name="geocode">Show on map</string>
+    <string name="geocode_failed">Geocoding failed with status %1$s</string>
+    <string name="geocode_failed_no_coords">No coordinates found.</string>
+    <string name="no_app">No activity found.</string>
+    <string name="rest_logs_title">REST Logs</string>
+    <string name="rest_log_title">REST Log</string>
+    <string name="too_long_warning">It\'s taking longer than usual...</string>
+
+</resources>

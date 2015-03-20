@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/connection_offset_default"
+    android:paddingBottom="@dimen/connection_offset_default"
+    android:paddingLeft="@dimen/connection_offset_medium"
+    android:paddingRight="@dimen/connection_offset_medium" >
+
+    <TextView
+        android:id="@+id/connectionLogTime"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/connectionLogName"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_below="@+id/connectionLogTime"
+        android:contentDescription="@null" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/connectionLogName" >
+
+        <TextView
+            android:id="@+id/connectionLogMethod"
+            style="@style/ConnectionTextSmall"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/connectionLogStatus"
+            style="@style/ConnectionTextSmall"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/connectionLogException"
+            style="@style/ConnectionTextSmall"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</RelativeLayout>

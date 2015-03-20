@@ -1,0 +1,33 @@
+import java.util.regex.Pattern
+
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+def groupId = "pl.openrnd.android"
+def artifactId = "connection-handler"
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.0.2"
+
+    defaultConfig {
+        versionName "1.0"
+        versionCode 1
+        minSdkVersion 14
+        targetSdkVersion 21
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:21.0.+'
+}
+

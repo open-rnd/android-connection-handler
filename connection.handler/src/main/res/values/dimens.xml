@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!-- fonts -->
+<dimen name="connection_font_xxxxlarge">38dp</dimen>
+<dimen name="connection_font_xxxlarge">32dp</dimen>
+<dimen name="connection_font_xxlarge">24dp</dimen>
+<dimen name="connection_font_xlarge">22dp</dimen>
+<dimen name="connection_font_large">20dp</dimen>
+<dimen name="connection_font_med">18dp</dimen>
+<dimen name="connection_font_reg">16dp</dimen>
+<dimen name="connection_font_reg_small">14dp</dimen>
+<dimen name="connection_font_small">12dp</dimen>
+<dimen name="connection_font_xsmall">10dp</dimen>
+<dimen name="connection_font_xxsmall">9dp</dimen>
+<dimen name="connection_font_tiny">6dp</dimen>
+
+<!-- margins -->
+<dimen name="connection_offset_xsmall">1dp</dimen>
+<dimen name="connection_offset_small">2dp</dimen>
+<dimen name="connection_offset_def_small">3dp</dimen>
+<dimen name="connection_offset_default">5dp</dimen>
+<dimen name="connection_offset_medium">10dp</dimen>
+<dimen name="connection_offset_medium_large">12dp</dimen>
+<dimen name="connection_offset_large">15dp</dimen>
+<dimen name="connection_offset_xlarge">20dp</dimen>
+<dimen name="connection_offset_xxlarge">25dp</dimen>
+<dimen name="connection_offset_xxxlarge">40dp</dimen>
+<dimen name="connection_dialog_offset">25dp</dimen>
+<dimen name="connection_offset_default_neg">-5dp</dimen>
+
+</resources>

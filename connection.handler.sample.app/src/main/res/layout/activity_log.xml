@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/connectionLogHeader"
+        android:textSize="@dimen/connection_font_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/connection_offset_xxlarge"
+        android:paddingBottom="@dimen/connection_offset_xxlarge"
+        android:text="@string/rest_log_title"
+        android:gravity="center"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/connectionLogHeader">
+
+        <pl.openrnd.connection.rest.view.ConnectionLogView
+            android:id="@+id/connectionLog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/connection_offset_medium" />
+
+    </ScrollView>
+
+</RelativeLayout>

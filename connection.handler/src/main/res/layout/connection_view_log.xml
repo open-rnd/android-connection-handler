@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <TextView
+        android:id="@+id/connectionLogRequestTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_request"/>
+
+    <TextView
+        android:id="@+id/connectionLogRequest"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+    <TextView
+        android:id="@+id/connectionLogUriTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_uri"/>
+
+    <TextView
+        android:id="@+id/connectionLogUri"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+    <TextView
+        android:id="@+id/connectionLogMethodTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_method"/>
+
+    <TextView
+        android:id="@+id/connectionLogMethod"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+    <TextView
+        android:id="@+id/connectionLogStatusTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_status"/>
+
+    <TextView
+        android:id="@+id/connectionLogStatus"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+    <TextView
+        android:id="@+id/connectionLogExceptionTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_exception"/>
+
+    <TextView
+        android:id="@+id/connectionLogException"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+    <TextView
+        android:id="@+id/connectionLogReqTimeTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:text="@string/connection_log_req_time"/>
+
+    <TextView
+        android:id="@+id/connectionLogReqTime"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+    <TextView
+        android:id="@+id/connectionLogRespTimeTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:text="@string/connection_log_resp_time"/>
+
+    <TextView
+        android:id="@+id/connectionLogRespTime"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+    <TextView
+        android:id="@+id/connectionLogReqHeadersTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_req_headers"/>
+
+    <TextView
+        android:id="@+id/connectionLogReqHeaders"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+    <TextView
+        android:id="@+id/connectionLogRespHeadersTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_resp_headers"/>
+
+    <TextView
+        android:id="@+id/connectionLogRespHeaders"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+
+    <TextView
+        android:id="@+id/connectionLogCookieTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_cookie"/>
+
+    <TextView
+        android:id="@+id/connectionCookie"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+
+    <TextView
+        android:id="@+id/connectionLogReqEntityTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_req_entity"/>
+
+    <TextView
+        android:id="@+id/connectionLogReqEntity"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+    <TextView
+        android:id="@+id/connectionLogRespEntityTitle"
+        style="@style/ConnectionTextSmallBold"
+        android:layout_marginTop="@dimen/connection_offset_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_log_resp_entity"/>
+
+    <TextView
+        android:id="@+id/connectionLogRespEntity"
+        style="@style/ConnectionTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:text="@string/connection_log_not_available" />
+
+</merge>

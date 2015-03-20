@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="connection_log_title">Logs</string>
+    <string name="connection_log_request">Request:</string>
+    <string name="connection_log_uri">URI:</string>
+    <string name="connection_log_method">Http method:</string>
+    <string name="connection_log_status">Http status:</string>
+    <string name="connection_log_req_time">Request time:</string>
+    <string name="connection_log_resp_time">Response time:</string>
+    <string name="connection_log_exception">Exception:</string>
+    <string name="connection_log_req_entity">Request entity:</string>
+    <string name="connection_log_resp_entity">Response entity:</string>
+    <string name="connection_log_req_headers">Request headers:</string>
+    <string name="connection_log_resp_headers">Response headers:</string>
+    <string name="connection_log_cookie">Cookies:</string>
+    <string name="connection_log_not_available">N/A</string>
+    <string name="connection_log_text_copied_to_clipboard">Text copied to clipboard</string>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ConnectionTextSmallBold" parent="ConnectionTextSmall">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ConnectionTextSmall" parent="ConnectionText">
+        <item name="android:textSize">@dimen/connection_font_small</item>
+    </style>
+
+    <style name="ConnectionText">
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+</resources>
