@@ -31,7 +31,7 @@ Add library dependence:
 
 ```
 dependencies {
-    compile group: "pl.openrnd.android", name: "connection-handler", version: "1.0.1"
+    compile group: "pl.openrnd.android", name: "connection-handler", version: "1.0.3"
 }
 ```
 
