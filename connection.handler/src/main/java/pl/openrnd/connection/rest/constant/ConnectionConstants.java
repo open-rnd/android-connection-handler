@@ -18,6 +18,8 @@
 
 package pl.openrnd.connection.rest.constant;
 
+import pl.openrnd.connection.rest.ConnectionConfig;
+
 public final class ConnectionConstants {
 	private ConnectionConstants() {}
 	
@@ -26,7 +28,6 @@ public final class ConnectionConstants {
 	public static final int DEFAULT_HTTP_READ_TIMEOUT = 40000;
 	public static final int DEFAULT_LOG_SIZE = 50;
 	public static final boolean DEFAULT_LOG_STATE = false;
-	
 	public static final boolean DEFAULT_USING_COOKIES = false;
 
 	@Deprecated

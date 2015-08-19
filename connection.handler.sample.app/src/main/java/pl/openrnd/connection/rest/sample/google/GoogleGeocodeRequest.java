@@ -23,6 +23,11 @@ import android.net.Uri;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import pl.openrnd.connection.rest.request.Request;
 
 public class GoogleGeocodeRequest extends Request {
@@ -37,7 +42,7 @@ public class GoogleGeocodeRequest extends Request {
     }
 
     @Override
-    protected HttpUriRequest onHttpUriRequestCreate(Object... params) {
+    protected HttpURLConnection onHttpUrlConnectionCreate(Object... params) {
         //params are the all parameters provided to the super constructor except the Response class object.
         //In that case there is only an address provided.
 
@@ -45,7 +50,19 @@ public class GoogleGeocodeRequest extends Request {
 
         Uri.Builder uriBuilder = Uri.parse(API).buildUpon();
         uriBuilder.appendQueryParameter("address", address);
+        URL url = null;
+        try {
+            url = new URL(uriBuilder.build().toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
-        return new HttpGet(uriBuilder.build().toString());
+        HttpURLConnection httpURLConnection = null;
+        try {
+            httpURLConnection = (HttpURLConnection) url.openConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return httpURLConnection;
     }
 }

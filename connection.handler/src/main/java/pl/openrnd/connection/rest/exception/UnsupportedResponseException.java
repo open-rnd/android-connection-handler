@@ -18,10 +18,11 @@
 
 package pl.openrnd.connection.rest.exception;
 
-import org.apache.http.Header;
-
 import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
 
+import pl.openrnd.connection.rest.RestConnectionLog;
 import pl.openrnd.connection.rest.utils.Utils;
 
 /**
@@ -35,7 +36,7 @@ public class UnsupportedResponseException extends Exception {
 	
 	private Integer mHttpStatusCode;
 	private String mHttpReasonPhrase;
-	private Header[] mHeaders;
+	private RestConnectionLog.Header[] mHeaders;
 	private String mContent;
 
     /**
@@ -46,7 +47,7 @@ public class UnsupportedResponseException extends Exception {
      * @param headers Server response headers
      * @param entityInputStream Opened input stream to response content entity. No need to close it.
      */
-	public UnsupportedResponseException(Integer statusCode, String reasonPhrase, Header[] headers, InputStream entityInputStream) {
+	public UnsupportedResponseException(Integer statusCode, String reasonPhrase, Map<String, List<String>> headers, InputStream entityInputStream) {
 		super(String.format("UnsupportedResponseException: %d/%s", statusCode, reasonPhrase));
 		
 		mContent = Utils.streamToString(entityInputStream);
@@ -75,7 +76,7 @@ public class UnsupportedResponseException extends Exception {
      *
      * @return Response headers
      */
-	public Header[] getHeaders() {
+	public RestConnectionLog.Header[] getHeaders() {
 		return mHeaders;
 	}
 

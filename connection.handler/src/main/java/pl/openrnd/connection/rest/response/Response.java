@@ -18,9 +18,11 @@
 
 package pl.openrnd.connection.rest.response;
 
-import org.apache.http.Header;
-
 import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+
+import pl.openrnd.connection.rest.RestConnectionLog;
 
 /**
  * Base response class
@@ -32,7 +34,7 @@ public abstract class Response {
 	private Integer mHttpStatusCode;
 	private String mHttpReasonPhrase;
 	private String mContentDescription;
-	private Header[] mHeaders;
+	private Map<String, List<String>> mHeaders;
 
     private Object mTag;
 
@@ -44,7 +46,7 @@ public abstract class Response {
      * @param headers Response headers
      * @param entityContentStream Opened input stream for response entity. No need to close it.
      */
-	public Response(Integer httpStatusCode, String httpReasonPhrase, Header[] headers, InputStream entityContentStream) {
+	public Response(Integer httpStatusCode, String httpReasonPhrase, Map<String, List<String>> headers, InputStream entityContentStream) {
 		mHttpStatusCode = httpStatusCode;
 		mHttpReasonPhrase = httpReasonPhrase;
 		mHeaders = headers;
@@ -108,7 +110,7 @@ public abstract class Response {
      *
      * @return Response headers
      */
-	public Header[] getHeaders() {
+	public Map<String, List<String>> getHeaders() {
 		return mHeaders;
 	}
 
@@ -122,11 +124,10 @@ public abstract class Response {
         String result = null;
 
         if (mHeaders != null) {
-            int length = mHeaders.length;
-            for (int i = 0; i < length; ++i) {
-                Header header = mHeaders[i];
-                if (header.getName().equalsIgnoreCase(headerKey)) {
-                    result = header.getValue();
+            int length = mHeaders.size();
+            for (Map.Entry<String, List<String>> header : mHeaders.entrySet()) {
+                if (header.getKey().equalsIgnoreCase(headerKey)) {
+                    result = header.getValue().toString();
                     break;
                 }
             }

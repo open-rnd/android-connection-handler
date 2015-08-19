@@ -20,10 +20,11 @@ package pl.openrnd.connection.rest.request;
 
 import android.util.Log;
 
-import org.apache.http.Header;
-import org.apache.http.client.methods.HttpUriRequest;
-
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.util.List;
+import java.util.Map;
 
 import pl.openrnd.connection.rest.data.HttpStatusCode;
 import pl.openrnd.connection.rest.response.Response;
@@ -32,13 +33,13 @@ import pl.openrnd.connection.rest.response.Response;
  * Base request class.
  *
  * Main tasks for extending classes are:
- * - provide valid HttpUriRequest object,
+ * - provide valid HttpURLConnection object,
  * - provide Response class object to be used for handling the response
  */
 public abstract class Request {
 	private static final String TAG = Request.class.getSimpleName();
 	
-	private HttpUriRequest mHttpUriRequest;
+	private HttpURLConnection mHttpUriRequest;
 	protected Class<? extends Response> mResponseClass;
 	private boolean mIsCanceled;
     private Integer mConnectionTimeout;
@@ -55,18 +56,25 @@ public abstract class Request {
 	public Request(Class<? extends Response> responseClass, Object... params) {
 		mResponseClass = responseClass;
 		
-		mHttpUriRequest = onHttpUriRequestCreate(params);
+		mHttpUriRequest = onHttpUrlConnectionCreate(params);
 		
 		mIsCanceled = false;
 	}
 
     /**
-     * Method that is required to create valid HttpUriRequest object to be passed to HttpClient.
+     * Method that is required to create valid HttpURLConnection object to be executed.
      *
-     * @param params Parameters required to create HttpUriRequest. Those are the same parameters as provided in constructor.
+     * @param params Parameters required to create HttpURLConnection. Those are the same parameters as provided in constructor.
      * @return HttpUriRequest object
      */
-	protected abstract HttpUriRequest onHttpUriRequestCreate(Object... params);
+	protected abstract HttpURLConnection onHttpUrlConnectionCreate(Object... params);
+
+	/**
+	 * In case of requests with body, this method should write body to URLConnection's output stream.
+	 *
+	 * @param outputStream Output stream to which request body should be written
+	 */
+	public void writeOutputStream(OutputStream outputStream) { }
 
     /**
      * Creates response object from registered Response class object.
@@ -77,15 +85,15 @@ public abstract class Request {
      * @param entityContentStream Opened input stream for response entity
      * @return Response object
      */
-	public Response getResponse(Integer httpStatusCode, String httpReasonPhrase, Header[] headers, InputStream entityContentStream) {
+	public Response getResponse(Integer httpStatusCode, String httpReasonPhrase, Map<String, List<String>> headers, InputStream entityContentStream) {
 		Response response = null;
 		if (mResponseClass != null) {
 			@SuppressWarnings("rawtypes")
-			Class[] paramTypes = { Integer.class, String.class, Header[].class, InputStream.class };
+			Class[] paramTypes = { Integer.class, String.class, Map.class, InputStream.class };
 			Object[] paramValues = { httpStatusCode, httpReasonPhrase, headers, entityContentStream };
 			
 			try {
-				response = mResponseClass.getConstructor(paramTypes).newInstance(paramValues);
+				response = (Response) mResponseClass.getConstructor(paramTypes).newInstance(paramValues);
                 response.setTag(mTag);
 			} catch (Exception exc) {
 				Log.e(TAG, String.format("getResponse(): exc[%s]", exc.getMessage()));
@@ -108,7 +116,7 @@ public abstract class Request {
 			Object[] paramValues = { exception };
 			
 			try {
-				response = mResponseClass.getConstructor(paramTypes).newInstance(paramValues);
+				response = (Response) mResponseClass.getConstructor(paramTypes).newInstance(paramValues);
                 response.setTag(mTag);
 			} catch (Exception exc) {
 				Log.e(TAG, String.format("getResponse(): exc[%s]", exc.getMessage()));
@@ -118,11 +126,11 @@ public abstract class Request {
 	}
 
     /**
-     * Gets HttpUriRequest object created by onHttpUriRequestCreate() method
+     * Gets HttpUriRequest object created by onHttpUrlConnectionCreate() method
      *
      * @return HttpUriRequest object
      */
-	public HttpUriRequest getHttpUriRequest() {
+	public HttpURLConnection getHttpUrlConnection() {
 		return mHttpUriRequest;
 	}
 
@@ -138,7 +146,7 @@ public abstract class Request {
 			@Override
 			public void run() {
 				try {
-					mHttpUriRequest.abort();
+					mHttpUriRequest.disconnect();
 				} catch (UnsupportedOperationException exc) {
 					exc.printStackTrace();
 				}
@@ -162,7 +170,7 @@ public abstract class Request {
      * @param value Header value
      */
 	protected void addHeader(String name, String value) {
-		mHttpUriRequest.addHeader(name, value);
+		mHttpUriRequest.addRequestProperty(name, value);
 	}
 
     /**
@@ -170,8 +178,8 @@ public abstract class Request {
      * @param name Header key name
      */
     protected void removeHeader(String name) {
-        mHttpUriRequest.removeHeaders(name);
-    }
+		mHttpUriRequest.getRequestProperty(name);
+	}
 
     /**
      * Gets information if all status codes are supported by the requests response
@@ -289,4 +297,16 @@ public abstract class Request {
     public Object getTag() {
         return mTag;
     }
+
+	public String getUrl() {
+		return mHttpUriRequest.getURL().toString();
+	}
+
+	public String getMethod() {
+		return mHttpUriRequest.getRequestMethod();
+	}
+
+	public Map<String, List<String>> getHeaders() {
+		return mHttpUriRequest.getRequestProperties();
+	}
 }

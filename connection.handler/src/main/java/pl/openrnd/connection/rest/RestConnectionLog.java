@@ -18,17 +18,14 @@
 
 package pl.openrnd.connection.rest;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.CookieStore;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.cookie.Cookie;
-
 import java.io.Serializable;
+import java.net.CookieStore;
+import java.net.HttpCookie;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import pl.openrnd.connection.rest.request.Request;
 import pl.openrnd.connection.rest.response.Response;
@@ -214,7 +211,7 @@ public class RestConnectionLog extends ConnectionLog implements Serializable {
         Builder cookies(CookieStore cookieStore){
             mCookie = null;
             if (cookieStore != null) {
-                List<Cookie> cookies = cookieStore.getCookies();
+                List<HttpCookie> cookies = cookieStore.getCookies();
                 if (cookies != null) {
                     int size = cookies.size();
 
@@ -227,34 +224,23 @@ public class RestConnectionLog extends ConnectionLog implements Serializable {
             return this;
         }
 
-        Builder request(HttpUriRequest request) {
-            mRequestUri = request.getURI().toString();
+        Builder request(Request request) {
+            mRequestName = request.getName();
+            mRequestContent = request.getContentDescription();
+            mRequestUri = request.getUrl();
             mRequestMethod = request.getMethod();
-            mRequestHeaders = createHeaders(request.getAllHeaders());
+            mRequestHeaders = createHeaders(request.getHeaders());
             mRequestDate = Calendar.getInstance().getTime();
             return this;
         }
 
-        Builder response(HttpResponse response) {
-            mResponseHeaders = createHeaders(response.getAllHeaders());
+        Builder response(Response response) {
+            mResponseHeaders = createHeaders(response.getHeaders());
             mResponseDate = Calendar.getInstance().getTime();
 
-            StatusLine statusLine = response.getStatusLine();
-            if (statusLine != null) {
-                mResponseStatusCode = statusLine.getStatusCode();
-                mResponseReasonPhrase = statusLine.getReasonPhrase();
-            }
+            mResponseStatusCode = response.getHttpStatusCode();
+            mResponseReasonPhrase = response.getHttpReasonPhrase();
 
-            return this;
-        }
-
-        Builder request(Request request) {
-            mRequestName = request.getName();
-            mRequestContent = request.getContentDescription();
-            return this;
-        }
-
-        Builder response(Response response) {
             mResponseException = response.getException();
             mResponseContent = response.getContentDescription();
 
@@ -269,15 +255,20 @@ public class RestConnectionLog extends ConnectionLog implements Serializable {
         }
     }
 
-    private static Header[] createHeaders(org.apache.http.Header[] headers) {
+    private static Header[] createHeaders(Map<String, List<String>> headers) {
         Header[] result = null;
 
-        if ((headers != null) && (headers.length > 0)) {
-            result = new Header[headers.length];
+        if ((headers != null) && (headers.size() > 0)) {
+            result = new Header[headers.size()];
 
-            for (int i = 0; i < headers.length; ++i) {
-                org.apache.http.Header header = headers[i];
-                result[i] = new Header(header.getName(), header.getValue());
+            int i = 0;
+            for (Map.Entry<String, List<String>> header : headers.entrySet()) {
+                StringBuilder valueBuilder = new StringBuilder();
+                for (String value : header.getValue()) {
+                    valueBuilder.append(value);
+                }
+                result[i] = new Header(header.getKey(), valueBuilder.toString());
+                i++;
             }
         }
 

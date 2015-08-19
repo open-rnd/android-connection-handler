@@ -21,10 +21,10 @@ package pl.openrnd.connection.rest.sample.google;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
-import org.apache.http.Header;
-
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import pl.openrnd.connection.rest.response.Response;
 import pl.openrnd.connection.rest.utils.Utils;
@@ -41,7 +41,7 @@ public class GoogleGeocodeResponse extends Response {
         super(exception);
     }
 
-    public GoogleGeocodeResponse(Integer httpStatusCode, String httpReasonPhrase, Header[] headers, InputStream entityContentStream) {
+    public GoogleGeocodeResponse(Integer httpStatusCode, String httpReasonPhrase, Map<String, List<String>> headers, InputStream entityContentStream) {
         super(httpStatusCode, httpReasonPhrase, headers, entityContentStream);
     }
 
